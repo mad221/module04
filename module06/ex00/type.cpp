@@ -25,142 +25,112 @@ const char* Type::Lenghtexception::what() const throw()
         return ("Error: not convertible");
 }
 
-
-int Type::ft_isdigit() const
+Type::Unprintable::Unprintable()
 {
-    int i = 0;
-       while (_str[i])
-    {
-        if ((_str[i] < '0' || _str[i] > '9') && _str[i] != '.') 
-            if (_str[i + 1] != '\0')
-                return (1);
-        i++;
-    }
-    return (0);
+
+}
+Type::Unprintable::~Unprintable()
+{
+
 }
 
-int Type::getlenghtpoint() const
+const char* Type::Unprintable::what() const throw()
 {
-    int i = 0;
-    int s = 0;
-    while (_str[i])
-    {
-        if (_str[i] == '.')
-        {
-            while (_str[i])
-            {
-                i++;
-                s++;
-            }
-            return (s - 1);
-        }
-        i++;
-    }
-    return (1);
-}
-void    Type::print() const
-{
-    if (unprint_char != 1 && isprint(_c) != 0)
-        std::cout << "char = " << _c << std::endl;
-    else
-        std::cout << "char = Error impossible to display character" << std::endl;
-    if (out_of_range < 1)
-        std::cout << "int = " << i_nb << std::endl;
-    else
-        std::cout << "int = OUT OF RANGE" << std::endl;
-    if (out_of_range < 2)
-        std::cout << "float = " << std::setprecision(getlenghtpoint()) << std::fixed << f_nb << "f" << std::endl;
-    else
-        std::cout << "float = OUT OF RANGE" << std::endl;
-    if (out_of_range < 3)
-        std::cout << "double = " << d_nb << std::endl;
-    else
-        std::cout << "double = OUT OF RANGE" << std::endl;    
-    }   
-
-
-int Type::litteralException(int i)
-{
-    std::cout << "char = impossible" << std::endl;
-    std::cout << "int = impossible" << std::endl;
-    if (i < 3)
-    {
-        std::cout << "float = " << _str << std::endl;
-        std::cout << "double = impossible" << std::endl;
-    }
-    else
-    {
-        std::cout << "float = impossible" << std::endl;
-        std::cout << "double = " << _str << std::endl;
-    }
-    return (1);
+        return ("Error: not printable");
 }
 
-int Type::ft_exception()
+
+char Type::check_char()
 {
-    int i = 0;
-    std::string array[]= {"-inff", "+ inff", "nanf", "-inf", "+ inf", "nan"};
-    while ( i < 7)
+    if (std::isnan(_str) == true)
     {
-        if (array[i] == _str)
-            return (litteralException(i));
-        i++;
+        throw Lenghtexception();
     }
-    return (0);
+    _c = static_cast<char>(_str);
+    if (std::isprint(_c) == false)
+    {
+        throw Unprintable();
+    }
+    return (_c);
 }
 
-std::string Type::getStr()
+void Type::is_char()
 {
-    return (_str);
+    std::cout << "char = " << check_char() << std::endl;
 }
 
- Type::Type(const std::string &str)
+
+int Type::check_int()
 {
-    _str = str;   
-    unprint_char = 0;
-    out_of_range = 0;
-    if (ft_exception() == 1)
-        return ;
-    if (_str.length() > 1 && ft_isdigit() == 1)
-         throw (Lenghtexception());
-    if (str.length() == 1 && (str[0] < 48 || str[0] > 57))
+    if (std::isnan(_str) == true || std::isinf(_str) == true)
     {
-        _c = str[0];
-        i_nb = (int)str[0];
-        f_nb = (int)str[0];
-        d_nb = (int)str[0];
+        throw Lenghtexception();
     }
-    else
+    if (INT_MAX < _str || INT_MIN > _str)
     {
-         try
-        { 
-            if (std::stoi(_str) >= 0 && std::stoi(_str) <= 256)
-                _c = std::stoi(_str);
-            else
-                unprint_char = 1;
-            i_nb = std::stoi(_str);
-        }
-        catch(const std::out_of_range& e)
-        {
-            out_of_range++;
-        }
-        try
-        {
-            f_nb = std::stof(_str);
-        }
-        catch(const std::out_of_range& e)
-        {
-            out_of_range++;
-        }
-        try
-        {
-            d_nb = std::stod(_str);
-        }
-        catch(const std::out_of_range & e)
-        {
-            out_of_range++;
-        }
+        throw OutOfRange();
     }
-    print();
-    
+    i_nb = static_cast<int>(_str);
+    return (i_nb);
+}
+
+Type::OutOfRange::OutOfRange()
+{
+
+}
+
+
+Type::OutOfRange::~OutOfRange()
+{
+
+}
+
+const char *Type::OutOfRange::what() const throw()
+{
+    return ("Error: Out Of Range");
+}
+
+void Type::is_int()
+{
+    std::cout << "int = " << check_int() << std::endl;
+}
+
+float Type::check_float()
+{
+
+    f_nb = static_cast<float>(_str);
+    return (f_nb);
+}
+
+void Type::is_float()
+{
+    std::cout << "Float = " << std::setprecision(_precision) << std::fixed  << check_float() << "f" << std::endl;
+}
+
+void Type::is_double()
+{
+    std::cout << "Double = " << _str << std::endl;
+}
+
+Type::Type(const double &str, int precision)
+{
+    _str = str;
+    _precision = precision;
+    try {
+        is_char();
+    }
+    catch (std::exception &e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+    try
+    {
+         is_int();
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << e.what() << '\n';
+    }
+    is_float();
+    is_double();
 }

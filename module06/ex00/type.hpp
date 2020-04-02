@@ -6,6 +6,10 @@
 #include <sstream>
 #include <ctype.h>
 #include <iomanip>
+#include <climits>
+#include <cstring>
+#include <cmath>
+
 
 
 class Type
@@ -14,26 +18,39 @@ class Type
         char _c;
         int  i_nb;
         float f_nb;
-        double d_nb;
-        int unprint_char;
-        int out_of_range;
-
-        std::string _str;
+        double _str;
+        int _precision;
     public:
         Type();
         ~Type();
-        Type(const std::string &str);
-        int ft_isdigit() const;
-        int getlenghtpoint() const;
-        void print() const;
-        int ft_exception();
-        std::string getStr();
-        int litteralException(int i);
+        Type(const double &str, int precision);
+        void is_char();
+        char check_char();
+        int check_int();
+        float check_float();
+        void is_int();
+        void is_float();
+        void is_double();
+
         class Lenghtexception : public std::exception
         {
             public:
                 Lenghtexception();
                 ~Lenghtexception();
+                virtual const char *what() const throw();
+        };
+        class Unprintable : public std::exception
+        {
+            public:
+                Unprintable();
+                ~Unprintable();
+                virtual const char *what() const throw();
+        };
+        class OutOfRange : public std::exception
+        {
+            public:
+                OutOfRange();
+                ~OutOfRange();
                 virtual const char *what() const throw();
         };
 };

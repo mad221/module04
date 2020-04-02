@@ -1,20 +1,37 @@
 #include "type.hpp"
 
+
+static int ft_precision(char *str)
+{
+    int i = 0;
+    int s = 0;
+    while (str[i])
+    {
+        if (str[i] == '.')
+        {
+            s = 1;
+            while (isdigit(str[i + s]))
+            {
+                s++;
+            }
+            return (s-1);
+        }
+        i++;
+
+    }
+    return (1);
+}
+
 int main(int ac, char **av)
 {
-    std::string arg;
-    if (ac == 3)
-    {
-        arg = av[1];
-        arg += av[2];
-    }
+    double arg;
     if (ac == 2)
-        arg = av[1];
-    if (ac == 2 || (ac == 3 && (arg == "+inf" || arg == "+inff")))
+        arg = atof(av[1]);   
+    if (ac == 2)
     {
         try 
         {
-            Type max(arg);
+            Type max(arg, ft_precision(av[1]));
         }
         catch (std::exception& error)
         {
@@ -25,6 +42,5 @@ int main(int ac, char **av)
     {
         std::cout << "please enter one argument" << std::endl;
     }
-    
     return (0);
 }
