@@ -1,8 +1,8 @@
-SRC = data.cpp main.cpp
+SRC = main.cpp
 
 CPP = clang++ -Wall -Werror -Wextra
 
-NAME = convert
+NAME = serialise
 
 OBJ = $(SRC:.c=.o)
 
