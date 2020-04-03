@@ -11,7 +11,6 @@ all	: $(NAME)
 $(NAME) : $(OBJ)
 	$(CPP) $(OBJ) -o $(NAME)
 
-
 clean:
 	rm $(OBJ)
 
