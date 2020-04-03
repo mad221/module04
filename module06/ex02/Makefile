@@ -1,8 +1,8 @@
-SRC = main.cpp
+SRC = main.cpp Base.cpp
 
 CPP = clang++ -Wall -Werror -Wextra
 
-NAME = serialise
+NAME = say_my_type
 
 OBJ = $(SRC:.c=.o)
 
