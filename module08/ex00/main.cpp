@@ -4,20 +4,14 @@
 template <typename T> 
 void easyfind(T &arg1, int arg2)
 {
-    int i = 0;
-
     try
     {
-        while (i < arg1.size())
-        {
-            if (arg1[i] == arg2)
-            {
-                std::cout << "found it to the place " << i << std::endl;
-                return ; 
-            }
-                i++;
-        }
-        throw (0);
+        typename T::iterator iterator;
+        iterator = std::find (arg1.begin(), arg1.end(), arg2);
+        if (iterator == arg1.end())
+            throw(0);
+        else
+            return (*iterator);
     }
     catch(int nb)
     {
@@ -39,6 +33,7 @@ int main()
     easyfind(b, 11);
     b.push_back(14);
     easyfind(b, 14);
+    
     
 
 
