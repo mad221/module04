@@ -13,7 +13,4 @@ int main()
     std::cout << max.top() << std::endl;
     max.pop();
     std::cout << max.top() << std::endl;
-
-
-
 }

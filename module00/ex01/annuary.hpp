@@ -19,12 +19,14 @@ class PhoneBook
     std::string favorite_meal;
     std::string underwear;
     std::string darkest_secret;
+    int         _s;
     public:
         PhoneBook();
         ~PhoneBook();
         void getValue();
         void search();
         void add();
+        void add_s(int s);
         void exit();
 
 };

@@ -34,10 +34,18 @@ void PhoneBook::add()
     std::getline(std::cin, darkest_secret);
 }
 
+void PhoneBook::add_s(int s)
+{
+    _s = s;
+}
+
 void PhoneBook::search()
 {
     std::string work;
     work = fisrt_name;
+    if (fisrt_name[0] && last_name[0] && nickname[0])
+    {
+        std::cout << _s << " :";
     std::cout.width(10);
     std::cout.fill(' ');
     if (work[0])
@@ -53,6 +61,7 @@ void PhoneBook::search()
     if (work[0])
         std::cout << work.substr(0, 10) << " |";
     std::cout << std::endl;
+    }
 }
 
 void PhoneBook::getValue()

@@ -1,8 +1,8 @@
-SRC = annuary.cpp main.cpp
+SRC = megaphone.cpp
 
 CPP = clang++ -Wall -Werror -Wextra
 
-NAME = annuary
+NAME = megaphone
 
 OBJ = $(SRC:.c=.o)
 
@@ -13,7 +13,7 @@ $(NAME) : $(OBJ)
 
 
 clean:
-	rm $(OBJ)
+	rm -rf megaphone.o
 
 fclean: clean
 		rm -rf $(NAME)
