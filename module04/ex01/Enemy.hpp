@@ -8,7 +8,7 @@ class Enemy
 {
     public:
         Enemy(int hp, std::string const &type);
-        ~Enemy();
+        virtual ~Enemy();
         std::string getType() const;
         int getHP() const;
         virtual void takeDamage(int damage);

@@ -1,6 +1,6 @@
 #include "RadScorpion.hpp"
 
-RadScorpion::RadScorpion() : Enemy(80, "RadScorpion")
+RadScorpion::RadScorpion() : RadScorpion::Enemy(80, "RadScorpion")
 {
     std::cout << "*click click click*" << std::endl;
 }

@@ -2,6 +2,8 @@
 
 Squad::Squad()
 {
+    this->_nb = 0;
+    this->_unit = NULL;
 }
 
 Squad::Squad(const Squad &classe)
@@ -40,14 +42,21 @@ int Squad::push(ISpaceMarine *marine)
     if (!marine)
         return (0);
     unity = _unit;
-    if (!(unity))
+    if (unity != NULL)
+    {
         while (unity->next != NULL)
             unity = unity->next;
-    t_unit *new_unit;
-    new_unit = new t_unit[1];
-    unity->next = new_unit;
-    new_unit->next = NULL;
-    new_unit->unit = marine;
+        unity->next = new t_unit;
+        unity->next->unit = marine;
+        unity->next->next = NULL;
+    }
+    else
+    {
+        this->_unit = new t_unit[1];
+        this->_unit->unit = marine;
+        this->_unit->next = NULL;
+    }
+    this->_nb += 1;
     return (1);
 
 }

@@ -1,22 +1,19 @@
 #ifndef _ASSAULT_
-#define _ASSOULT_
+#define _ASSAULT_
 #include <iostream>
 #include <string>
 #include "ISpaceMarine.hpp"
 
 class AssaultTerminator : public ISpaceMarine
 {
-    private:
-
     public:
         AssaultTerminator();
         virtual ~AssaultTerminator();
-        void battleCry();
-        void rangedAttack();
-        void meleeAttack();
+        void battleCry() const;
+        void rangedAttack() const;
+        void meleeAttack() const;
+        ISpaceMarine*	clone(void)			const;
 
 };
-
-
 
 #endif

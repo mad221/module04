@@ -12,10 +12,10 @@ class Character
         ~Character();
         void recoverAP();
         void equip(AWeapon *weapon);
-        virtual void attack(Enemy *enemy);
+        void attack(Enemy *enemy);
         std::string getName() const;
         int getAp() const;
-        AWeapon *getWeapon();
+        AWeapon *getWeapon() const;
 
     private:
         std::string m_name;
