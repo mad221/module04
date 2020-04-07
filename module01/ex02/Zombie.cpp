@@ -16,5 +16,5 @@ Zombie::Zombie(const std::string &name, const std::string &type)
 {
     _name = name;
     _type = type;
-    std::cout << _name << " " << _type << " Bariiiiiinnnssss ..." << std::endl;
+    std::cout << _name << " " << _type << " Braiiiiiinnnssss ..." << std::endl;
 }
