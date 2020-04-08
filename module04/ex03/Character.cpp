@@ -17,8 +17,12 @@ void Character::equip(AMateria *inv)
 void Character::unequip(int index)
 {
     if (index < 4 && index > -1)
-    _inventory[index] = NULL;
+        _inventory[index] = NULL;
 
+}
+const std::string &Character::getName() const
+{
+    return (_name);
 }
 
 Character::~Character()
@@ -61,8 +65,10 @@ Character::Character(const Character &src)
 
 void Character::use(int index, ICharacter &target)
 {
-    if (index < _index)
+    if (index < _index && _inventory[index] != NULL)
     {
         this->_inventory[index]->use(target);
     }
+    else
+        std::cout << "EMPTY GO EQUIP WITH MATERIAAAAA\n";
 }

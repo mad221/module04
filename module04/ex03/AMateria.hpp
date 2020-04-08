@@ -4,6 +4,7 @@
 #include <string>
 #include "ICharacter.hpp"
 
+class ICharacter;
 
 class AMateria
 {
@@ -13,13 +14,22 @@ class AMateria
 
     public:
         AMateria();
+        
+        AMateria(const AMateria &src);
+
         AMateria(std::string const & type);
-        ~AMateria();
+        
+        virtual ~AMateria();
+        
         AMateria &operator=(const AMateria &classe);
+        
         std::string const & getType() const;
+        
         unsigned int getXP() const; 
+        
         virtual AMateria* clone() const = 0;
-        virtual void use(ICharacter& target);
+
+        virtual void use(ICharacter& target) = 0;
 
 };
 #endif

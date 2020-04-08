@@ -5,6 +5,11 @@ AMateria::AMateria()
 {
 }
 
+AMateria::AMateria(const AMateria &src)
+{
+    *this = src;
+}
+
 AMateria::AMateria(std::string const &type)
 {
     _type = type;

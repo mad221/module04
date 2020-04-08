@@ -50,5 +50,6 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &classe)
         }
         _index = classe._index;
     }
+    return (*this);
 }
 

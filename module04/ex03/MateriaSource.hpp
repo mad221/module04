@@ -10,9 +10,10 @@ class MateriaSource : public IMateriaSource
     public:
         ~MateriaSource();
         MateriaSource();
-        MateriaSource(const MateriaSource *src);
-        virtual AMateria *createMateria(const std::string &type);
+        MateriaSource(const MateriaSource &src);
+
         MateriaSource &operator=(const MateriaSource &classe);
+        virtual AMateria *createMateria(const std::string &type);
         virtual void learnMateria(AMateria *object);
     private:
         AMateria *_inventory[4];
