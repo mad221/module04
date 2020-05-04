@@ -45,7 +45,7 @@ void PhoneBook::search()
     work = fisrt_name;
     if (fisrt_name[0] && last_name[0] && nickname[0])
     {
-        std::cout << _s << " :";
+        std::cout << _s + 1 << " :";
     std::cout.width(10);
     std::cout.fill(' ');
     if (work[0])
@@ -66,17 +66,17 @@ void PhoneBook::search()
 
 void PhoneBook::getValue()
 {
-    std::cout << fisrt_name << std::endl;
-    std::cout << last_name << std::endl;
-    std::cout << nickname << std::endl;
-    std::cout << login << std::endl;
-    std::cout << postal_address << std::endl;
-    std::cout << email << std::endl;
-    std::cout << phone_number << std::endl;
-    std::cout << birthday << std::endl;
-    std::cout << favorite_meal << std::endl;
-    std::cout << underwear << std::endl;
-    std::cout << darkest_secret << std::endl;
+    std::cout << "FIRST NAME " << fisrt_name << std::endl;
+    std::cout << "LAST NAME " << last_name << std::endl;
+    std::cout << "NICKNAME " << nickname << std::endl;
+    std::cout << "LOGIN " << login << std::endl;
+    std::cout << "POSTAL ADDRESS " << postal_address << std::endl;
+    std::cout << "EMAIL " << email << std::endl;
+    std::cout << "PHONE NUMBER " << phone_number << std::endl;
+    std::cout << "BIRTHDAY " << birthday << std::endl;
+    std::cout << "FAVORITE MEAL " << favorite_meal << std::endl;
+    std::cout << "UNDERWEAR " << underwear << std::endl;
+    std::cout << "DARKEST SECRET " << darkest_secret << std::endl;
 }
 
 void PhoneBook::exit()

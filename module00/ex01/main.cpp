@@ -19,13 +19,19 @@ void ft_compare(std::string str, PhoneBook *array, int &i)
             array[s].search();
             s++;
         }
-        std::cout << "SELECT A VALUE = ";
+        if (i != 0)
+            std::cout << "SELECT A VALUE BETWEEN " << 1 << " AND " << i <<  " = ";
+        else
+        {
+            std::cout << "NO DATA CAN'T SELECT A VALUE..." << std::endl;
+            return ;
+        }
         std::getline(std::cin, str);
         try
         {
             int select = std::stoi(str);
-            if (select >= 0 && select < i)
-                array[select].getValue();
+            if (select >= 1 && select - 1 < i)
+                array[select - 1].getValue();
         }
         catch(const std::exception& e)
         {
@@ -47,7 +53,5 @@ int main()
         std::cout << "annuary = ";
         std::getline(std::cin, str);
         ft_compare(str, array, i);
-        if (i == 8)
-            i = 0;
     }
 }
